@@ -78,6 +78,11 @@ class WinkPost extends AbstractWinkModel
         return $this->belongsTo(WinkAuthor::class, 'author_id');
     }
 
+    public function category()
+    {
+        return $this->belongsTo(WinkCategory::class);
+    }
+
     /**
      * Scope a query to only include published posts.
      *

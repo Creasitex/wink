@@ -15,6 +15,7 @@
         data() {
             return {
                 baseURL: '/api/posts',
+                categories: [],
                 tags: [],
                 authors: [],
                 entries: [],
@@ -27,6 +28,7 @@
                 filters: {
                     status: '',
                     author_id: '',
+                    category_id: '',
                     tag_id: '',
                 }
             };
@@ -52,6 +54,10 @@
              * Load the resources needed for the screen.
              */
             loadResources() {
+                this.http().get('/api/categories').then(response => {
+                    this.categories = response.data.data;
+                });
+
                 this.http().get('/api/tags').then(response => {
                     this.tags = response.data.data;
                 });
@@ -165,6 +171,7 @@
 
                         <p class="mb-3">{{truncate(entry.body.replace(/(<([^>]+)>)/ig,""), 100)}}</p>
 
+                        
                         <small class="text-light">
                             <span v-if="entry.published && !dateInTheFuture(entry.publish_date)">Published {{timeAgo(entry.publish_date)}}</span>
                             <span v-if="entry.published && dateInTheFuture(entry.publish_date)" class="text-green">Scheduled {{timeAgo(entry.publish_date)}}</span>

@@ -18,8 +18,26 @@ export default [
         component: require('./screens/posts/edit').default
     },
 
-
     // Categories...
+    {
+        path: '/categories',
+        name: 'categories',
+        component: require('./screens/categories/index').default
+    },
+
+    {
+        path: '/categories/new',
+        name: 'category-new',
+        component: require('./screens/categories/edit').default
+    },
+
+    {
+        path: '/categories/:id',
+        name: 'category-edit',
+        component: require('./screens/categories/edit').default
+    },
+
+    // Tags...
     {
         path: '/tags',
         name: 'tags',

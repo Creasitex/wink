@@ -47135,6 +47135,20 @@ var render = function() {
                     },
                     [
                       _vm._v(
+                        "\n                            Categories\n                        "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "no-underline text-text-color hover:text-primary w-full block py-2 px-4",
+                      attrs: { to: "/tags" }
+                    },
+                    [
+                      _vm._v(
                         "\n                            Tags\n                        "
                       )
                     ]

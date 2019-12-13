@@ -41,9 +41,9 @@
          * Prepare the component.
          */
         mounted() {
-            document.title = "Tag — Wink.";
+            document.title = "Categories — Wink.";
 
-            this.http().get('/api/tags/' + this.id).then(response => {
+            this.http().get('/api/categories/' + this.id).then(response => {
                 this.entry = response.data.entry;
 
                 this.form.id = response.data.entry.id;
@@ -91,25 +91,25 @@
 
         methods: {
             /**
-             * Delete the tag.
+             * Delete the category.
              */
-            deleteTag() {
-                this.alertConfirm("Are you sure you want to delete this tag?", () => {
-                    this.http().delete('/api/tags/' + this.id, this.form).then(response => {
-                        this.$router.push({name: 'tags'})
+            deleteCategory() {
+                this.alertConfirm("Are you sure you want to delete this category?", () => {
+                    this.http().delete('/api/categories/' + this.id, this.form).then(response => {
+                        this.$router.push({name: 'categories'})
                     })
                 });
             },
 
 
             /**
-             * Save the tag.
+             * Save the category.
              */
             save() {
                 this.form.working = true;
                 this.form.errors = [];
 
-                this.http().post('/api/tags/' + this.id, this.form).then(response => {
+                this.http().post('/api/categories/' + this.id, this.form).then(response => {
                     this.form.working = false;
 
                     this.notifySuccess('Saved!', 2000);
@@ -156,7 +156,7 @@
                         <a href="#" @click.prevent="seoModal" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                             SEO & Social
                         </a>
-                        <a href="#" @click.prevent="deleteTag" class="no-underline text-red w-full block py-2 px-4" v-if="id != 'new'">Delete</a>
+                        <a href="#" @click.prevent="deleteCategory" class="no-underline text-red w-full block py-2 px-4" v-if="id != 'new'">Delete</a>
                     </div>
                 </dropdown>
             </div>
@@ -166,15 +166,15 @@
             <preloader v-if="!ready"></preloader>
 
             <h2 v-if="ready && !entry" class="text-center font-normal">
-                404 — Tag not found
+                404 — Category not found
             </h2>
 
             <div class="lg:w-2/3 mx-auto" v-if="ready && entry">
-                <h1 class="font-semibold text-3xl mb-10" v-if="id != 'new'">Edit Tag</h1>
-                <h1 class="font-semibold text-3xl mb-10" v-else>New Tag</h1>
+                <h1 class="font-semibold text-3xl mb-10" v-if="id != 'new'">Edit Category</h1>
+                <h1 class="font-semibold text-3xl mb-10" v-else>New Category</h1>
 
                 <div class="input-group">
-                    <label for="name" class="input-label">Tag Name</label>
+                    <label for="name" class="input-label">Category Name</label>
                     <input type="text" class="input"
                            v-model="form.name"
                            placeholder="Give me a name"
@@ -184,7 +184,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="name" class="input-label">Tag Slug</label>
+                    <label for="name" class="input-label">Category Slug</label>
                     <input type="text" class="input"
                            v-model="form.slug"
                            placeholder="and-a-slug-please"

@@ -51,11 +51,11 @@ class WinkCategory extends AbstractWinkModel
     /**
      * The posts that has the tag.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function posts()
     {
-        return $this->hasMany(WinkPost::class);
+        return $this->hasMany(WinkPost::class, 'category_id');
     }
 
     /**

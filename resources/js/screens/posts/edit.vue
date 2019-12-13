@@ -14,6 +14,7 @@
                 ready: false,
                 entry: null,
                 currentTab: 'post',
+                categories: [],
                 tags: [],
                 authors: [],
                 status: '',
@@ -35,6 +36,7 @@
                     title: 'Draft',
                     slug: '',
                     excerpt: '',
+                    category_id: '',
                     tags: [],
                     author_id: '',
                     featured_image: '',
@@ -144,6 +146,7 @@
                     this.form.excerpt = data.excerpt;
                     this.form.body = data.body;
                     this.form.published = data.published;
+                    this.form.category_id = data.category_id || '';
                     this.form.tags = data.tags || '';
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
@@ -181,6 +184,10 @@
              * Load the resources needed for the screen.
              */
             loadResources() {
+                this.http().get('/api/categories').then(response => {
+                    this.categories = response.data.data;
+                });
+
                 this.http().get('/api/tags').then(response => {
                     this.tags = response.data.data;
                 });
@@ -422,6 +429,16 @@
                     <option v-for="author in authors" :value="author.id">{{author.name}}</option>
                 </select>
                 <form-errors :errors="errors.author_id"></form-errors>
+            </div>
+
+            <div class="input-group">
+                <label for="category_id" class="input-label">Category</label>
+                <select name="category_id" class="input"
+                        v-model="form.category_id"
+                        id="category_id">
+                    <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+                </select>
+                <form-errors :errors="errors.category_id"></form-errors>
             </div>
 
             <div class="input-group">

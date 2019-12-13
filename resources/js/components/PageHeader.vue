@@ -41,7 +41,9 @@
                             <router-link to="/pages" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                                 Pages
                             </router-link>
-
+                            <router-link to="/categories" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
+                                Categories
+                            </router-link>
                             <router-link to="/tags" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                                 Tags
                             </router-link>

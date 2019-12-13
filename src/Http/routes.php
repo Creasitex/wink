@@ -6,6 +6,12 @@ Route::get('/api/posts/{id?}', 'PostsController@show')->name('posts.show');
 Route::post('/api/posts/{id}', 'PostsController@store')->name('posts.store');
 Route::delete('/api/posts/{id}', 'PostsController@delete')->name('posts.delete');
 
+// Blog Categories...
+Route::get('/api/categories', 'CategoriesController@index')->name('categories.index');
+Route::get('/api/categories/{id?}', 'CategoriesController@show')->name('categories.show');
+Route::post('/api/categories/{id}', 'CategoriesController@store')->name('categories.store');
+Route::delete('/api/categories/{id}', 'CategoriesController@delete')->name('categories.delete');
+
 // Blog Tags...
 Route::get('/api/tags', 'TagsController@index')->name('tags.index');
 Route::get('/api/tags/{id?}', 'TagsController@show')->name('tags.show');

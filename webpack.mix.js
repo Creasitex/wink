@@ -36,8 +36,10 @@ mix
     .sass('resources/sass/light.scss', 'public', {}, [tailwindcss('./light.js')])
     .version();
 
-mix
-    .sass('resources/sass/dark.scss', 'public', {}, [tailwindcss('./dark.js')])
+mix.sass("resources/sass/dark.scss", "public", {}, [tailwindcss("./dark.js")])
     .version()
-    .copy('resources/favicon.png', 'public')
-    .copy('public', '../winktest/public/vendor/wink');
+    .copy("resources/favicon.png", "public")
+    .copy(
+        "public",
+        "../../Quishios/lubricantesinteligentes-website/public/vendor/wink"
+    );

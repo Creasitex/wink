@@ -41,5 +41,5 @@ mix.sass("resources/sass/dark.scss", "public", {}, [tailwindcss("./dark.js")])
     .copy("resources/favicon.png", "public")
     .copy(
         "public",
-        "../../Quishios/lubricantesinteligentes-website/public/vendor/wink"
+        "../lubricantesinteligentes-website/public/vendor/wink"
     );

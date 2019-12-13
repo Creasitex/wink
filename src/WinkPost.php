@@ -80,7 +80,7 @@ class WinkPost extends AbstractWinkModel
 
     public function category()
     {
-        return $this->belongsTo(WinkCategory::class);
+        return $this->belongsTo(WinkTag::class, 'category_id');
     }
 
     /**

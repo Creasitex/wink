@@ -25,7 +25,7 @@ class CreateCategoriesTable extends Migration
         });     
         
         Schema::table('wink_posts', function (Blueprint $table) {
-            $table->uuid('category_id')->index();
+            $table->uuid('category_id')->index()->nullable();
             $table->foreign('category_id')->references('id')->on('wink_categories');
         });
     }

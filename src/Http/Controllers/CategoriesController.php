@@ -16,10 +16,7 @@ class CategoriesController
      */
     public function index()
     {
-        $entries = WinkCategory::when(request()->has('search'), function ($q) {
-            $q->where('name', 'LIKE', '%' . request('search') . '%');
-        })
-            ->orderBy('created_at', 'DESC')
+        $entries = WinkCategory::orderBy('created_at', 'DESC')
             ->withCount('posts')
             ->get();
 

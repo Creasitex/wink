@@ -3115,8 +3115,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    document.title = "Tag — Wink.";
-    this.http().get('/api/tags/' + this.id).then(function (response) {
+    document.title = "Categories — Wink.";
+    this.http().get('/api/categories/' + this.id).then(function (response) {
       _this.entry = response.data.entry;
       _this.form.id = response.data.entry.id;
 
@@ -3160,29 +3160,29 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     /**
-     * Delete the tag.
+     * Delete the category.
      */
-    deleteTag: function deleteTag() {
+    deleteCategory: function deleteCategory() {
       var _this4 = this;
 
-      this.alertConfirm("Are you sure you want to delete this tag?", function () {
-        _this4.http().delete('/api/tags/' + _this4.id, _this4.form).then(function (response) {
+      this.alertConfirm("Are you sure you want to delete this category?", function () {
+        _this4.http().delete('/api/categories/' + _this4.id, _this4.form).then(function (response) {
           _this4.$router.push({
-            name: 'tags'
+            name: 'categories'
           });
         });
       });
     },
 
     /**
-     * Save the tag.
+     * Save the category.
      */
     save: function save() {
       var _this5 = this;
 
       this.form.working = true;
       this.form.errors = [];
-      this.http().post('/api/tags/' + this.id, this.form).then(function (response) {
+      this.http().post('/api/categories/' + this.id, this.form).then(function (response) {
         _this5.form.working = false;
 
         _this5.notifySuccess('Saved!', 2000);
@@ -3237,7 +3237,7 @@ __webpack_require__.r(__webpack_exports__);
    */
   data: function data() {
     return {
-      baseURL: '/api/tags',
+      baseURL: '/api/categories',
       entries: [],
       hasMoreEntries: false,
       nextPageUrl: null,
@@ -3251,7 +3251,7 @@ __webpack_require__.r(__webpack_exports__);
    * Prepare the component.
    */
   mounted: function mounted() {
-    document.title = "Tags — Wink.";
+    document.title = "Categories — Wink.";
     this.loadEntries();
   }
 });
@@ -47131,7 +47131,7 @@ var render = function() {
                     {
                       staticClass:
                         "no-underline text-text-color hover:text-primary w-full block py-2 px-4",
-                      attrs: { to: "/tags" }
+                      attrs: { to: "/categories" }
                     },
                     [
                       _vm._v(
@@ -48101,7 +48101,7 @@ var render = function() {
                               on: {
                                 click: function($event) {
                                   $event.preventDefault()
-                                  return _vm.deleteTag($event)
+                                  return _vm.deleteCategory($event)
                                 }
                               }
                             },
@@ -48125,7 +48125,7 @@ var render = function() {
           _vm._v(" "),
           _vm.ready && !_vm.entry
             ? _c("h2", { staticClass: "text-center font-normal" }, [
-                _vm._v("\n            404 — Tag not found\n        ")
+                _vm._v("\n            404 — Category not found\n        ")
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -48133,10 +48133,10 @@ var render = function() {
             ? _c("div", { staticClass: "lg:w-2/3 mx-auto" }, [
                 _vm.id != "new"
                   ? _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
-                      _vm._v("Edit Tag")
+                      _vm._v("Edit Category")
                     ])
                   : _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
-                      _vm._v("New Tag")
+                      _vm._v("New Category")
                     ]),
                 _vm._v(" "),
                 _c(
@@ -48146,7 +48146,7 @@ var render = function() {
                     _c(
                       "label",
                       { staticClass: "input-label", attrs: { for: "name" } },
-                      [_vm._v("Tag Name")]
+                      [_vm._v("Category Name")]
                     ),
                     _vm._v(" "),
                     _c("input", {
@@ -48189,7 +48189,7 @@ var render = function() {
                     _c(
                       "label",
                       { staticClass: "input-label", attrs: { for: "name" } },
-                      [_vm._v("Tag Slug")]
+                      [_vm._v("Category Slug")]
                     ),
                     _vm._v(" "),
                     _c("input", {
@@ -48274,9 +48274,9 @@ var render = function() {
               "router-link",
               {
                 staticClass: "py-1 px-2 btn-primary text-sm",
-                attrs: { to: { name: "tag-new" } }
+                attrs: { to: { name: "category-new" } }
               },
-              [_vm._v("\n                New Tag\n            ")]
+              [_vm._v("\n                New Category\n            ")]
             )
           ],
           1
@@ -48294,7 +48294,7 @@ var render = function() {
               _c(
                 "h1",
                 { staticClass: "inline font-semibold text-3xl mr-auto" },
-                [_vm._v("Tags")]
+                [_vm._v("Categories")]
               ),
               _vm._v(" "),
               _c(
@@ -48339,15 +48339,17 @@ var render = function() {
                 _c(
                   "p",
                   [
-                    _vm._v("No tags were found, start by\n                "),
+                    _vm._v(
+                      "No categories were found, start by\n                "
+                    ),
                     _c(
                       "router-link",
                       {
                         staticClass:
                           "no-underline text-primary hover:text-primary-dark",
-                        attrs: { to: { name: "tag-new" } }
+                        attrs: { to: { name: "category-new" } }
                       },
-                      [_vm._v("adding some tags")]
+                      [_vm._v("adding some categories")]
                     ),
                     _vm._v("\n                .\n            ")
                   ],
@@ -48359,7 +48361,7 @@ var render = function() {
           _vm.ready && _vm.entries.length == 0 && _vm.isFiltered
             ? _c("div", [
                 _vm._v(
-                  "\n            No tags matched the given search.\n        "
+                  "\n            No categories matched the given search.\n        "
                 )
               ])
             : _vm._e(),
@@ -48394,7 +48396,7 @@ var render = function() {
                                     staticClass: "no-underline text-text-color",
                                     attrs: {
                                       to: {
-                                        name: "tag-edit",
+                                        name: "category-edit",
                                         params: { id: entry.id }
                                       }
                                     }
@@ -48450,7 +48452,7 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("Load Older Tags")]
+                                    [_vm._v("Load Older Categories")]
                                   )
                                 : _vm._e()
                             ]),
@@ -68355,9 +68357,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/paco/code/Laravel/wink/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/paco/code/Laravel/wink/resources/sass/light.scss */"./resources/sass/light.scss");
-module.exports = __webpack_require__(/*! /home/paco/code/Laravel/wink/resources/sass/dark.scss */"./resources/sass/dark.scss");
+__webpack_require__(/*! /home/paco/code/Quishios/wink/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/paco/code/Quishios/wink/resources/sass/light.scss */"./resources/sass/light.scss");
+module.exports = __webpack_require__(/*! /home/paco/code/Quishios/wink/resources/sass/dark.scss */"./resources/sass/dark.scss");
 
 
 /***/ })

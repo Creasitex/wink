@@ -17,13 +17,13 @@ class CreateCategoriesTable extends Migration
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('name');
-            $table->timestamps();            
+            $table->timestamps();
 
             $table->index('created_at');
 
             $table->text('meta')->nullable();
-        });     
-        
+        });
+
         Schema::table('wink_posts', function (Blueprint $table) {
             $table->uuid('category_id')->index()->nullable();
             $table->foreign('category_id')->references('id')->on('wink_categories');
@@ -37,6 +37,13 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wink_categories');       
+        if (Schema::hasColumn('wink_posts', 'category_id')) {
+            Schema::table('wink_posts', function ($table) {
+                $table->dropForeign(['category_id']);
+                $table->dropColumn('category_id');
+            });
+        }
+
+        Schema::dropIfExists('wink_categories');
     }
 }

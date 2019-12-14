@@ -2,7 +2,10 @@
 
 namespace Wink;
 
-class WinkPost extends AbstractWinkModel
+use \Spatie\Searchable\Searchable;
+use \Spatie\Searchable\SearchResult;
+
+class WinkPost extends AbstractWinkModel implements Searchable
 {
     /**
      * The attributes that aren't mass assignable.
@@ -149,5 +152,16 @@ class WinkPost extends AbstractWinkModel
     public function scopeAfterPublishDate($query, $date)
     {
         return $query->where('publish_date', '>', $date);
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('blog.index', $this->slug);
+     
+         return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->title,
+            $url
+         );
     }
 }
